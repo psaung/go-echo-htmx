@@ -25,7 +25,7 @@ func (r RedisCache) Get(ctx context.Context, key string) (*string, error) {
 
 func (r RedisCache) Set(ctx context.Context, key, value string) error {
 	ttl := 24 * time.Hour
-	return &r.redisClient.Set(ctx, key, value, ttl).Err()
+	return r.redisClient.Set(ctx, key, value, ttl).Err()
 }
 
 func (r RedisCache) Delete(ctx context.Context, key string) error {
