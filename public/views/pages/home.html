@@ -1,0 +1,11 @@
+{{ block "content" . }}
+  Hello from HTMX!
+
+  <div id="user-info">
+    <p>{{.Name}}</p>
+    <button hx-get="/user-info" hx-target="#user-info" hx-swap="innerHTML">Reveal Info</button>
+  </div>
+
+  {{template "me" .}}
+    
+{{end}}
