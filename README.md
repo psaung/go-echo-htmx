@@ -1,1 +1,1 @@
-### Go Echo HTMX 
+### Go Echo HTMX Boilerplate

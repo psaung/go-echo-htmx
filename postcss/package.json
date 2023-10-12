@@ -1,0 +1,19 @@
+{
+  "name": "htmx-tailwind-postcss",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bunx postcss ./css/style.css -o ../static/css/style.css",
+    "build:watch": "bunx postcss ./css/style.css --watch -o ../static/css/style.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "bun-types": "latest",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
