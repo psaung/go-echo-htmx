@@ -1,7 +1,4 @@
-# Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
-
-# Logs
-
+.vscode
 logs
 _.log
 npm-debug.log_
@@ -170,7 +167,4 @@ dist
 
 # IntelliJ based IDEs
 .idea
-
-# Finder (MacOS) folder config
-.DS_Store
 

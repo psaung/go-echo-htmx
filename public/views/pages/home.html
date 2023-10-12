@@ -1,7 +1,7 @@
 {{ block "content" . }}
   Hello from HTMX!
 
-  <div id="user-info">
+  <div id="user-info" class="transition ease-in-out duration-300">
     <p>Hello {{.Name}}</p>
     <button hx-get="/user-info" hx-target="#user-info" hx-swap="innerHTML" hx-targe-4*="#serious-error">Reveal Info</button>
     <div id="serious-error"></div>

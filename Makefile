@@ -20,7 +20,7 @@ setup-local: tools
 	@docker exec -it go-echo-htmx-pg psql -h localhost -p 5432 -U $(DB_USER) -tc "SELECT 1 FROM pg_database WHERE datname = '$(DB_NAME)'" | grep -q 1 || (docker exec -it go-echo-htmx-pg psql -h localhost -p 5432 -U $(DB_USER) -c "CREATE DATABASE $(DB_NAME)" && echo "Database $(DB_NAME) created")
 
 build-css:
-	@cd postcss; bun build
+	@cd postcss; bun run build
 
 watch-css:
 	@cd postcss; bun build:watch
