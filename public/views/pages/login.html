@@ -1,5 +1,14 @@
 {{ block "content" .}}
-  <form>
+  <form hx-post="/login" hx-swap="afterbegin" hx-trigger="submit">
+    <h3></h3>
+    <div>
+      <label for="name">Username</label>
+      <input type="text" name="name"/>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password"/>
+    </div>
     <input type="submit" value="Submit"/>
   </form>
 {{ end }}

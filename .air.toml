@@ -1,0 +1,12 @@
+[build]
+delay = 1000
+
+kill_delay = 10
+
+exclude_dir = ["postgres","vendor","misc","terraform"]
+
+[log]
+time = true
+
+[misc]
+clean_on_exit = true

@@ -1,0 +1,6 @@
+.vscode
+vendor
+.env
+tmp
+postgres
+.DS_Store

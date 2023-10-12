@@ -2,10 +2,9 @@
   Hello from HTMX!
 
   <div id="user-info">
-    <p>{{.Name}}</p>
-    <button hx-get="/user-info" hx-target="#user-info" hx-swap="innerHTML">Reveal Info</button>
+    <p>Hello {{.Name}}</p>
+    <button hx-get="/user-info" hx-target="#user-info" hx-swap="innerHTML" hx-targe-4*="#serious-error">Reveal Info</button>
+    <div id="serious-error"></div>
   </div>
-
-  {{template "me" .}}
     
 {{end}}
