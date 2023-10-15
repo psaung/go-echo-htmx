@@ -1,26 +1,21 @@
 package router
 
 import (
-	"time"
-
 	"github.com/labstack/echo/v4"
 
 	"github.com/psaung/go-echo-htmx/internal/controllers"
-	"github.com/psaung/go-echo-htmx/internal/helpers"
 	"github.com/psaung/go-echo-htmx/internal/middlewares"
 )
 
-func Init(e *echo.Echo) {
-	e.GET("/", controllers.HomeHandler)
-	e.GET("/about", controllers.AboutHandler)
-	e.GET("/user-info", controllers.GetInfoHandler)
-	e.GET("/404", controllers.NotFoundHandler)
-	e.GET("/login", controllers.LoginHandler)
+func Init(e *echo.Echo, c controllers.Controllers) {
+	e.GET("/", c.HomeHandler)
+	e.GET("/about", c.AboutHandler)
+	e.GET("/user-info", c.GetInfoHandler)
+	e.GET("/404", c.NotFoundHandler)
+	e.GET("/login", c.LoginHandler)
 
-	sessionStore := helpers.NewCookieSessionStore("session", "secret", time.Hour)
-
-	app := e.Group("/app", middlewares.AuthMiddleware(sessionStore))
+	app := e.Group("/app", middlewares.AuthMiddleware(c.GetSession()))
 	{
-		app.GET("/user-info", controllers.GetInfoHandler)
+		app.GET("/user-info", c.GetInfoHandler)
 	}
 }

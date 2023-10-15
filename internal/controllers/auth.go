@@ -6,6 +6,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func LoginHandler(c echo.Context) error {
-	return c.Render(http.StatusOK, "pages/login", nil)
+func (c *controllers) LoginHandler(ec echo.Context) error {
+	return ec.Render(http.StatusOK, "pages/login", nil)
 }
