@@ -13,6 +13,7 @@ func Init(e *echo.Echo, c controllers.Controllers) {
 	e.GET("/user-info", c.GetInfoHandler)
 	e.GET("/404", c.NotFoundHandler)
 	e.GET("/login", c.LoginHandler)
+	e.GET("/register", c.RegisterHandler)
 
 	app := e.Group("/app", middlewares.AuthMiddleware(c.GetSession()))
 	{

@@ -18,6 +18,7 @@ type Controllers interface {
 
 	// auth
 	LoginHandler(c echo.Context) error
+	RegisterHandler(c echo.Context) error
 
 	// home
 	HomeHandler(c echo.Context) error
