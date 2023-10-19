@@ -1,10 +1,17 @@
 {{ block "content" . }}
-  Hello from HTMX!
-
+<div class="md:w-[480px] mx-auto mt-[60px] border rounded p-8" id="user-info">
   <div id="user-info" class="transition ease-in-out duration-300">
     <p>Hello {{.Name}}</p>
-    <button hx-get="/user-info" hx-target="#user-info" hx-swap="innerHTML" hx-targe-4*="#serious-error">Reveal Info</button>
-    <div id="serious-error"></div>
+    <button
+      hx-get="/app/user-info"
+      class="px-4 rounded bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-4 mt-4 cursor-pointer outline-none"
+      hx-target="#user-info"
+      hx-swap="innerHTML"
+      hx-target-4*="#container"
+    >
+      Reveal Info
+    </button>
   </div>
-    
+</div>
+
 {{end}}
