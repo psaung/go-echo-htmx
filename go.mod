@@ -5,9 +5,10 @@ go 1.21.2
 require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/google/uuid v1.3.1
-	github.com/jinzhu/gorm v1.9.16
 	github.com/labstack/echo/v4 v4.11.1
 	gopkg.in/tylerb/graceful.v1 v1.2.15
+	gorm.io/driver/postgres v1.5.3
+	gorm.io/gorm v1.25.5
 )
 
 require (
@@ -26,10 +27,8 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
-	golang.org/x/net v0.16.0 // indirect
+	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
-	gorm.io/driver/postgres v1.5.3 // indirect
-	gorm.io/gorm v1.25.5 // indirect
 )
