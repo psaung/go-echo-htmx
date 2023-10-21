@@ -1,10 +1,11 @@
+{{ block "content" . }}
 <form
-  hx-post="/login"
+  hx-post="/register"
   hx-swap="afterbegin"
   hx-trigger="submit"
   class="flex flex-col py-8 items-centr gap-y-8"
 >
-  <h3 class="text-center font-bold text-2xl">Login</h3>
+  <h3 class="text-center font-bold text-2xl">Register</h3>
   <label
     class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
   >
@@ -37,17 +38,46 @@
       class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
     />
   </label>
+
+  <label
+    class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
+  >
+    <span class="transition ease-in duration-250 transition-colors"
+      >Confirm Password</span
+    >
+    <i
+      class="gg-lock absolute bottom-[25px] ease-in duration-250 transition-colors !mt-0"
+    ></i>
+    <input
+      type="password"
+      name="confirm"
+      class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
+    />
+  </label>
+
+  <label
+    class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
+  >
+    <span class="transition ease-in duration-250 transition-colors"
+      >Address</span
+    >
+    <i
+      class="gg-notes absolute bottom-[15px] ease-in duration-250 transition-colors"
+    ></i>
+    <input
+      type="text"
+      name="address"
+      class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
+      autocomplete="off"
+    />
+  </label>
   <input
     type="submit"
     value="Submit"
     class="rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-4 mt-4 cursor-pointer outline-none"
   />
-  <button
-    hx-swap="innerHTML"
-    hx-target="#user-info"
-    hx-get="/register"
-    class="cursor-pointer"
-  >
-    Register
-  </button>
+  <div hx-boost="true" hx-select="#app" hx-swap="outerHTML" class="text-center">
+    <a href="/login">Login</a>
+  </div>
 </form>
+{{ end }}

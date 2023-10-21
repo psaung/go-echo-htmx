@@ -13,7 +13,9 @@ func AuthMiddleware(sessionStore helpers.SessionStore) echo.MiddlewareFunc {
 		return func(c echo.Context) error {
 			user, err := sessionStore.Get(c, "user")
 			if err != nil {
-				return c.Redirect(http.StatusTemporaryRedirect, "/login")
+				// TODO:redirect htmx/unauthorie route if the request is handled from the htmx specific route
+				// or redirect login route if the request is handled from the other route
+				return c.Redirect(http.StatusTemporaryRedirect, "/htmx/unauthorize")
 			}
 
 			c.Set("user", user)

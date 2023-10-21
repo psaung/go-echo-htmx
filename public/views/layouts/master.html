@@ -17,7 +17,14 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
   </head>
   <body class="bg-slate-900 text-white">
-    <main id="app" hx-boost="true">{{ template "content" . }}</main>
+    <main>
+      <section
+        class="md:w-[480px] mx-auto mt-[60px] border rounded p-8"
+        id="app"
+      >
+        {{ template "content" . }}
+      </section>
+    </main>
   </body>
 </html>
 {{ end }}

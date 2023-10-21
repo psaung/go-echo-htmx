@@ -19,6 +19,7 @@ type Controllers interface {
 	// auth
 	RenderLoginHandler(c echo.Context) error
 	RenderRegisterHandler(c echo.Context) error
+	RenderUnauthorizeHandler(c echo.Context) error
 
 	// home
 	RenderHomeHandler(c echo.Context) error
