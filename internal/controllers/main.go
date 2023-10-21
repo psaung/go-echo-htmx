@@ -14,16 +14,16 @@ type Controllers interface {
 	GetSession() helpers.SessionStore
 
 	// user
-	GetInfoHandler(c echo.Context) error
+	RenderGetInfoHandler(c echo.Context) error
 
 	// auth
-	LoginHandler(c echo.Context) error
-	RegisterHandler(c echo.Context) error
+	RenderLoginHandler(c echo.Context) error
+	RenderRegisterHandler(c echo.Context) error
 
 	// home
-	HomeHandler(c echo.Context) error
-	AboutHandler(c echo.Context) error
-	NotFoundHandler(c echo.Context) error
+	RenderHomeHandler(c echo.Context) error
+	RenderAboutHandler(c echo.Context) error
+	RenderNotFoundHandler(c echo.Context) error
 }
 
 type controllers struct {

@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func (c *controllers) GetInfoHandler(ec echo.Context) error {
+func (c *controllers) RenderGetInfoHandler(ec echo.Context) error {
 	res := map[string]interface{}{
 		"name":  "someone",
 		"Phone": "99999",
