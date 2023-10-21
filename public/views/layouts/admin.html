@@ -18,7 +18,7 @@
   </head>
   <body class="bg-slate-900 text-white">
     Admin
-    <main id="app">{{ template "content" . }}</main>
+    <main id="app" hx-boost="true">{{ template "content" . }}</main>
   </body>
 </html>
 {{ end }}
