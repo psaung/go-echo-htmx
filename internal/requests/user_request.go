@@ -6,8 +6,19 @@ import (
 )
 
 type UserAuth struct {
-	Email    string `json:"email" validate:"required" example:"john.doe@example.com"`
-	Password string `json:"password" validate:"required" example: "111111"`
+	Email    string `form:"email" validate:"required" example:"john.doe@example.com"`
+	Password string `form:"password" validate:"required" example: "111111"`
+}
+
+type RegisterRequest struct {
+	UserAuth
+	Name            string `form:"name" validate:"required" example: "name"`
+	ConfirmPassword string `form:"confirm" validate:"required" example: "111111"`
+	Address         string `form:"address" example: "somewhere"`
+}
+
+type LoginRequest struct {
+	UserAuth
 }
 
 func (auth UserAuth) Validate() error {
@@ -17,6 +28,13 @@ func (auth UserAuth) Validate() error {
 	)
 }
 
-type LoginRequest struct {
-	UserAuth
+func (req RegisterRequest) Validate() error {
+	err := req.UserAuth.Validate()
+	if err != nil {
+		return err
+	}
+
+	return validation.ValidateStruct(
+		&req,
+	)
 }

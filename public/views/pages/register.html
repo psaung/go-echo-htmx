@@ -12,13 +12,15 @@
     <label
       class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
     >
-      <span class="transition ease-in duration-250 transition-colors">Email</span>
+      <span class="transition ease-in duration-250 transition-colors"
+        >Email</span
+      >
       <i
         class="gg-user absolute bottom-[15px] ease-in duration-250 transition-colors"
       ></i>
       <input
         type="email"
-          required
+        required
         name="email"
         class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
         autocomplete="off"
@@ -32,6 +34,32 @@
       />
     </label>
     <div class="text-red-500 mb-3 hidden">Email is invalid</div>
+
+    <label
+      class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
+    >
+      <span class="transition ease-in duration-250 transition-colors"
+        >Name</span
+      >
+      <i
+        class="gg-user absolute bottom-[15px] ease-in duration-250 transition-colors"
+      ></i>
+      <input
+        type="text"
+        required
+        name="name"
+        class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
+        autocomplete="off"
+        _="on blur or keyup
+            if my value is empty
+              remove .hidden from the next <div/>
+              then exit
+            end
+            add .hidden to the next <div/>
+          "
+      />
+    </label>
+    <div class="text-red-500 mb-3 hidden">Name is required</div>
 
     <label
       class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
@@ -121,7 +149,13 @@
         on click put '' into #input-error
       "
     />
-    <div hx-boost="true" hx-target="#app" hx-select="#app" hx-swap="outerHTML" class="text-center">
+    <div
+      hx-boost="true"
+      hx-target="#app"
+      hx-select="#app"
+      hx-swap="outerHTML"
+      class="text-center"
+    >
       <a href="/login">Login</a>
     </div>
   </form>
