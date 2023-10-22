@@ -31,7 +31,6 @@
               remove .hidden from the next <div/>
               then exit
             end
-            put '' into #input-error
             add .hidden to the next <div/>
           "
       />
@@ -71,8 +70,9 @@
         if (<[required]:invalid/>).length > 0
           add @disabled then exit
         end
-        put '' into #input-error
-        remove @disabled"
+        remove @disabled
+        on click put '' into #input-error
+      "
     />
     <div
       hx-boost="true"
