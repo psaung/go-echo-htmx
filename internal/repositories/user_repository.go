@@ -26,6 +26,10 @@ func (u *UserRepository) GetUserByEmail(user *models.User, email string) error {
 	return u.DB.Where("email = ?", email).Find(user).Error
 }
 
+func (u *UserRepository) CheckPassword(user *models.User, password string) bool {
+	return helpers.DecryptPassword(user.Password, password)
+}
+
 func (u *UserRepository) RegisterUser(req *requests.RegisterRequest) error {
 	encryptedPassword, err := helpers.HashPassword(req.Password)
 	if err != nil {

@@ -1,9 +1,19 @@
 {{template "me" .}}
 <div>
-    <p>User Personal Information:</p>
-    <ol>
-        <li>Name: {{.Name}}</li>
-        <li>Phone: {{.Phone}}</li>
-        <li>Email: {{.Email}}</li>
-    </ol>
+  <p>User Personal Information:</p>
+  <ol>
+    <li>Name: {{.username}}</li>
+    <li>Email: {{.email}}</li>
+  </ol>
+  <button
+    hx-post="/logout"
+    hx-trigger="click"
+    hx-target="#user-info"
+    hx-swap="innerHTML"
+    hx-target-4*="#container"
+    hx-target-5*="#container"
+    class="inline-block px-8 rounded bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-4 mt-4 cursor-pointer outline-none"
+  >
+    Logout
+  </button>
 </div>

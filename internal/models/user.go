@@ -12,6 +12,12 @@ type User struct {
 	// Orders []Order `gorm:"foreignKey:UserID;references:ID"`
 }
 
+type CookieData struct {
+	ID       string `json:"id"`
+	Email    string `json:"email"`
+	Username string `json:"username"`
+}
+
 func (User) TableName() string {
 	return "users"
 }

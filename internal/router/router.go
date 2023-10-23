@@ -18,6 +18,7 @@ func Init(e *echo.Echo, c controllers.Controllers) {
 	// post request
 	e.POST("/login", c.LoginHandler)
 	e.POST("/register", c.RegisterHandler)
+	e.POST("/logout", c.LogoutHandler)
 
 	// htmx specific route
 	e.GET("/htmx/unauthorize", c.RenderUnauthorizeHandler)
