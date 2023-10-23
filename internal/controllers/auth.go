@@ -130,6 +130,7 @@ func (c *controllers) RegisterHandler(ec echo.Context) error {
 
 func (c *controllers) LogoutHandler(ec echo.Context) error {
 	c.Session.Delete(ec, "auth")
+	ec.Set("user", nil)
 
 	return ec.Render(http.StatusOK, "htmx/ok", map[string]interface{}{
 		"title":    "Logout Successfully",

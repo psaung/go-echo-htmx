@@ -8,6 +8,7 @@ import (
 )
 
 func Init(e *echo.Echo, c controllers.Controllers) {
+	e.Use(middlewares.SessionMiddleware(c.GetSession()))
 	// pages
 	e.GET("/", c.RenderHomeHandler)
 	e.GET("/about", c.RenderAboutHandler)
