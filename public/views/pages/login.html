@@ -1,50 +1,88 @@
 {{ block "content" . }}
-<form
-  hx-post="/login"
-  hx-swap="afterbegin"
-  hx-trigger="submit"
-  class="flex flex-col py-8 items-centr gap-y-8"
->
-  <h3 class="text-center font-bold text-2xl">Login</h3>
-  <label
-    class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
+<div hx-ext="response-targets">
+  <form
+    hx-post="/login"
+    hx-target-4*="#input-error"
+    hx-target="this"
+    hx-swap="innerHTML"
+    hx-trigger="submit"
+    class="flex flex-col py-8 items-centr gap-y-8"
   >
-    <span class="transition ease-in duration-250 transition-colors"
-      >Username</span
+    <h3 class="text-center font-bold text-2xl">Login</h3>
+    <div id="input-error"></div>
+    <label
+      class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
     >
-    <i
-      class="gg-user absolute bottom-[15px] ease-in duration-250 transition-colors"
-    ></i>
-    <input
-      type="text"
-      name="name"
-      class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
-      autocomplete="off"
-    />
-  </label>
+      <span class="transition ease-in duration-250 transition-colors"
+        >Email</span
+      >
+      <i
+        class="gg-user absolute bottom-[15px] ease-in duration-250 transition-colors"
+      ></i>
 
-  <label
-    class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
-  >
-    <span class="transition ease-in duration-250 transition-colors"
-      >Password</span
+      <input
+        required
+        type="email"
+        name="email"
+        class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
+        autocomplete="off"
+        _="on blur or keyup
+            if I match <:invalid/>
+              remove .hidden from the next <div/>
+              then exit
+            end
+            add .hidden to the next <div/>
+          "
+      />
+    </label>
+    <div class="text-red-500 mb-3 hidden">Email is invalid</div>
+
+    <label
+      class="flex flex-col items-start justify-between w-full relative focus-within:text-pink-500"
     >
-    <i
-      class="gg-lock absolute bottom-[25px] ease-in duration-250 transition-colors !mt-0"
-    ></i>
+      <span class="transition ease-in duration-250 transition-colors"
+        >Password</span
+      >
+      <i
+        class="gg-lock absolute bottom-[25px] ease-in duration-250 transition-colors !mt-0"
+      ></i>
+      <input
+        required
+        type="password"
+        name="password"
+        class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
+        _="on blur or keyup
+            if my value is empty
+              remove .hidden from the next <div/>
+              then exit
+            end
+            add .hidden to the next <div/>
+          "
+      />
+    </label>
+    <div class="text-red-500 mb-3 hidden error-container">Password is empty</div>
     <input
-      type="password"
-      name="password"
-      class="border-b-[1px] py-3 border-gray-600 outline-none w-full pl-8 bg-transparent !text-white focus:border-pink-500 transition ease-in duration-250 transition-[border-color]"
+      type="submit"
+      value="Submit"
+      disabled
+      class="rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-4 mt-4 cursor-pointer outline-none disabled:opacity-90 disabled:cursor-pointer-events-none disabled:cursor-not-allowed disabled:via-purple-300 disabled:to-pink-300"
+      _="on keyup from closest <form/> debounced at 150ms
+        if (<[required]:invalid/>).length > 0
+          add @disabled then exit
+        end
+        remove @disabled
+        on click put '' into #input-error
+      "
     />
-  </label>
-  <input
-    type="submit"
-    value="Submit"
-    class="rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-4 mt-4 cursor-pointer outline-none"
-  />
-  <div hx-boost="true" hx-select="#app" hx-swap="outerHTML" class="text-center">
-    <a href="/register">Register</a>
-  </div>
-</form>
+    <div
+      hx-boost="true"
+      hx-select="#app"
+      hx-target="#app"
+      hx-swap="outerHTML"
+      class="text-center"
+    >
+      <a href="/register">Register</a>
+    </div>
+  </form>
+</div>
 {{ end }}

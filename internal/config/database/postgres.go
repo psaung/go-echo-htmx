@@ -11,7 +11,7 @@ import (
 
 var DB *gorm.DB
 
-func getPostgresURL() string {
+func GetPostgresURL() string {
 	pgHost := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
@@ -29,7 +29,7 @@ func getPostgresURL() string {
 
 func NewPostgres() *gorm.DB {
 	var err error
-	postgresURL := getPostgresURL()
+	postgresURL := GetPostgresURL()
 	dialector := postgres.New(postgres.Config{
 		DSN: postgresURL,
 	})

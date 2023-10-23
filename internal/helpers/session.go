@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	"encoding/json"
 	"net/http"
 	"time"
 
@@ -10,8 +9,8 @@ import (
 )
 
 type SessionStore interface {
-	Set(c echo.Context, key string, value interface{}) error
-	Get(c echo.Context, key string) (interface{}, error)
+	Set(c echo.Context, key string, value string) error
+	Get(c echo.Context, key string) (string, error)
 	Delete(c echo.Context, key string)
 	SessionID() string
 }
@@ -30,30 +29,19 @@ func NewCookieSessionStore(name, secret string, ttl time.Duration) *CookieSessio
 	}
 }
 
-func (s *CookieSessionStore) Get(c echo.Context, key string) (interface{}, error) {
+func (s *CookieSessionStore) Get(c echo.Context, key string) (string, error) {
 	cookie, err := c.Request().Cookie(s.name + "_" + key)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
-	var value interface{}
-	err = json.Unmarshal([]byte(cookie.Value), &value)
-	if err != nil {
-		return nil, err
-	}
-
-	return value, nil
+	return string(cookie.Value), nil
 }
 
-func (s *CookieSessionStore) Set(c echo.Context, key string, value interface{}) error {
-	jsonValue, err := json.Marshal(value)
-	if err != nil {
-		return err
-	}
-
+func (s *CookieSessionStore) Set(c echo.Context, key, value string) error {
 	cookie := &http.Cookie{
 		Name:     s.name + "_" + key,
-		Value:    string(jsonValue),
+		Value:    value,
 		Path:     "/",
 		Expires:  time.Now().Add(s.ttl),
 		HttpOnly: true,

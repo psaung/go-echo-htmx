@@ -4,11 +4,21 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+
+	"github.com/psaung/go-echo-htmx/internal/models"
 )
 
 func (c *controllers) RenderHomeHandler(ec echo.Context) error {
+	cookieUser := ec.Get("user")
+	name := "Guest!"
+
+	if cookieUser != nil {
+		user := cookieUser.(models.CookieData)
+		name = user.Username
+	}
+
 	return ec.Render(http.StatusOK, "pages/home", map[string]interface{}{
-		"Name":  "Guest!",
+		"Name":  name,
 		"Title": "Home",
 	})
 }

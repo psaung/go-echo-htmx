@@ -15,6 +15,9 @@ type Controllers interface {
 
 	// user
 	RenderGetInfoHandler(c echo.Context) error
+	LoginHandler(c echo.Context) error
+	LogoutHandler(c echo.Context) error
+	RegisterHandler(c echo.Context) error
 
 	// auth
 	RenderLoginHandler(c echo.Context) error

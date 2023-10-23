@@ -4,13 +4,21 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+
+	"github.com/psaung/go-echo-htmx/internal/models"
 )
 
 func (c *controllers) RenderGetInfoHandler(ec echo.Context) error {
-	res := map[string]interface{}{
-		"name":  "someone",
-		"Phone": "99999",
-		"Email": "someone@gmail.com",
+	user := ec.Get("user").(models.CookieData)
+	if user.ID == "" {
+		return ec.Render(http.StatusUnprocessableEntity, "htmx/auth_error", map[string]interface{}{
+			"title":   "Somehting went wrong",
+			"content": "Please try it again",
+		})
 	}
-	return ec.Render(http.StatusOK, "htmx/name_card", res)
+
+	return ec.Render(http.StatusOK, "htmx/name_card", map[string]interface{}{
+		"username": user.Username,
+		"email":    user.Email,
+	})
 }
